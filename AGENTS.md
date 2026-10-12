@@ -1,7 +1,7 @@
 ---
 title: "Agent Guide: POUR for Branding Systems & CX"
 version: "0.1.0"
-author: "Double-FW"
+author: "Double-FW, Gareth Ford Williams"
 date: "2026-10-12"
 license: "MIT"
 language: "en"
