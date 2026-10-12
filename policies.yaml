@@ -1,0 +1,86 @@
+policies:
+  - id: "p-perceivable-01"
+    title: "Perceivable"
+    description: "Users must be able to recognize and access content without exclusion by sensory or format barriers."
+    severity: "high"
+    categories:
+      - "content"
+      - "brand"
+      - "accessibility"
+    triggers:
+      - "missing_alt_text"
+      - "missing_captions"
+      - "content_only_in_visual_format"
+    actions:
+      - type: "suggest_fix"
+        template: "Provide accessible alternatives such as text, transcripts, captions, or structured descriptions."
+      - type: "escalate"
+        when: "severity == 'high' and impact == 'critical'"
+        escalation_level: "human_accessibility_reviewer"
+
+  - id: "p-operable-01"
+    title: "Operable"
+    description: "Users must be able to navigate and act without unexpected barriers."
+    severity: "medium"
+    categories:
+      - "interaction"
+      - "navigation"
+      - "experience"
+    triggers:
+      - "keyboard_inaccessible_controls"
+      - "focus_trap"
+      - "unlabeled_action"
+    actions:
+      - type: "suggest_fix"
+        template: "Ensure controls are keyboard usable, clearly labeled, and navigable without hidden traps."
+
+  - id: "p-understandable-01"
+    title: "Understandable"
+    description: "People should understand the context, actions, and decisions in the experience."
+    severity: "medium"
+    categories:
+      - "copy"
+      - "interface"
+      - "decision_support"
+    triggers:
+      - "ambiguous_state"
+      - "unclear_error"
+      - "misleading_label"
+    actions:
+      - type: "suggest_fix"
+        template: "Clarify labels, provide contextual help, and avoid ambiguous phrasing."
+
+  - id: "p-robust-01"
+    title: "Robust"
+    description: "Systems should remain reliable across devices, assistive technologies, and changing conditions."
+    severity: "high"
+    categories:
+      - "technical"
+      - "resilience"
+      - "trust"
+    triggers:
+      - "technical_regression"
+      - "incompatible_assistive_technology"
+      - "inconsistent_behavior_across_contexts"
+    actions:
+      - type: "suggest_fix"
+        template: "Investigate cross-platform regressions and add compatibility tests for assistive technologies."
+      - type: "escalate"
+        when: "severity == 'high'"
+        escalation_level: "engineering_on_call"
+
+  - id: "p-satisfactory-01"
+    title: "Satisfactory"
+    description: "The experience should feel respectful, inclusive, and emotionally safe."
+    severity: "low"
+    categories:
+      - "brand"
+      - "cx"
+      - "inclusion"
+    triggers:
+      - "tone_undermines_trust"
+      - "excluded_language"
+      - "friction_without_support"
+    actions:
+      - type: "suggest_fix"
+        template: "Adjust tone and provide supportive microcopy and guidance."
