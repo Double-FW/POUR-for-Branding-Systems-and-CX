@@ -1,0 +1,19 @@
+{
+  "source_repository": "Double-FW/POUR-for-Branding-Systems-and-CX",
+  "destination_dataset": "GarethFW/POUR_for_Branding_Systems_and_CX",
+  "dataset_version": "1.0.0",
+  "files": [
+    "AGENTS.md",
+    "README.md",
+    "The WCAG POUR principles reframed through emotional outcomes for branding systems.md",
+    "policies.yaml"
+  ],
+  "required_files": [
+    "AGENTS.md",
+    "README.md",
+    "The WCAG POUR principles reframed through emotional outcomes for branding systems.md",
+    "policies.yaml",
+    "LICENSE"
+  ],
+  "approved_license_sha256": "7ef02bc0b6ba376de57be5f27784eef23df6a74068a4a2a172f95ba2c605b7af"
+}
