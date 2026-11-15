@@ -1,19 +1,33 @@
 {
   "source_repository": "Double-FW/POUR-for-Branding-Systems-and-CX",
   "destination_dataset": "GarethFW/POUR_for_Branding_Systems_and_CX",
-  "dataset_version": "1.0.0",
+  "dataset_version": "2.0.0",
   "files": [
     "AGENTS.md",
     "README.md",
     "The WCAG POUR principles reframed through emotional outcomes for branding systems.md",
-    "policies.yaml"
+    "policies.yaml",
+    "POURS_Access_Experience_and_Brand_Promise.md",
+    "Satisfactory_Customer_Experience_Outcomes.md",
+    "Brand_Values_and_Inclusive_Experience_Research.md",
+    "POURS_and_EAA_Annex_I_Mapping.md",
+    "Complaints_Recovery_and_Continuous_Improvement.md"
   ],
   "required_files": [
     "AGENTS.md",
     "README.md",
     "The WCAG POUR principles reframed through emotional outcomes for branding systems.md",
     "policies.yaml",
-    "LICENSE"
+    "LICENSE",
+    "POURS_Access_Experience_and_Brand_Promise.md",
+    "Satisfactory_Customer_Experience_Outcomes.md",
+    "Brand_Values_and_Inclusive_Experience_Research.md",
+    "POURS_and_EAA_Annex_I_Mapping.md",
+    "Complaints_Recovery_and_Continuous_Improvement.md"
   ],
-  "approved_license_sha256": "7ef02bc0b6ba376de57be5f27784eef23df6a74068a4a2a172f95ba2c605b7af"
+  "approved_license_sha256": "7ef02bc0b6ba376de57be5f27784eef23df6a74068a4a2a172f95ba2c605b7af",
+  "document_only_files": [
+    "The WCAG POUR principles reframed through emotional outcomes for branding systems.md",
+    "policies.yaml"
+  ]
 }
