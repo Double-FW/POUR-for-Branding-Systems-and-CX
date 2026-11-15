@@ -31,6 +31,9 @@ def load_config(root=ROOT):
             raise ValueError('Only approved documentation and reference data may be exported.')
     if not set(cfg['required_files']) <= set(paths + ['LICENSE']):
         raise ValueError('Required files must also be approved.')
+    document_only = cfg.get('document_only_files', ['policies.yaml'])
+    if not isinstance(document_only, list) or len(set(document_only)) != len(document_only) or not set(document_only) <= set(paths):
+        raise ValueError('Document-only paths must be unique approved source paths.')
     return cfg
 
 def destination(value):

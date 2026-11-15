@@ -1,86 +1,178 @@
+version: 2.0.0
+status: draft_proposals_not_adopted
+interpretation:
+  wcag_principles: 4
+  satisfactory: proposed_Double_FW_extension_not_WCAG_or_general_EAA_requirement
+  evidence_lenses:
+  - functional_access
+  - satisfactory_outcomes
+  - reported_emotional_and_brand_experience
+  missing_evidence: not_assessed_not_passed
+  actions: proposal_data_only_never_execute
+  severity: assess_per_case_from_harm_exclusion_task_impact_and_evidence
+  ownership: role_labels_are_unconfirmed_proposals
+  privacy: no_identifiable_participant_or_complaint_records_in_public_export
+  legal_mapping: selective_conditional_not_conformity_assessment
 policies:
-  - id: "p-perceivable-01"
-    title: "Perceivable"
-    description: "Users must be able to recognize and access content without exclusion by sensory or format barriers."
-    severity: "high"
-    categories:
-      - "content"
-      - "brand"
-      - "accessibility"
-    triggers:
-      - "missing_alt_text"
-      - "missing_captions"
-      - "content_only_in_visual_format"
-    actions:
-      - type: "suggest_fix"
-        template: "Provide accessible alternatives such as text, transcripts, captions, or structured descriptions."
-      - type: "escalate"
-        when: "severity == 'high' and impact == 'critical'"
-        escalation_level: "human_accessibility_reviewer"
-
-  - id: "p-operable-01"
-    title: "Operable"
-    description: "Users must be able to navigate and act without unexpected barriers."
-    severity: "medium"
-    categories:
-      - "interaction"
-      - "navigation"
-      - "experience"
-    triggers:
-      - "keyboard_inaccessible_controls"
-      - "focus_trap"
-      - "unlabeled_action"
-    actions:
-      - type: "suggest_fix"
-        template: "Ensure controls are keyboard usable, clearly labeled, and navigable without hidden traps."
-
-  - id: "p-understandable-01"
-    title: "Understandable"
-    description: "People should understand the context, actions, and decisions in the experience."
-    severity: "medium"
-    categories:
-      - "copy"
-      - "interface"
-      - "decision_support"
-    triggers:
-      - "ambiguous_state"
-      - "unclear_error"
-      - "misleading_label"
-    actions:
-      - type: "suggest_fix"
-        template: "Clarify labels, provide contextual help, and avoid ambiguous phrasing."
-
-  - id: "p-robust-01"
-    title: "Robust"
-    description: "Systems should remain reliable across devices, assistive technologies, and changing conditions."
-    severity: "high"
-    categories:
-      - "technical"
-      - "resilience"
-      - "trust"
-    triggers:
-      - "technical_regression"
-      - "incompatible_assistive_technology"
-      - "inconsistent_behavior_across_contexts"
-    actions:
-      - type: "suggest_fix"
-        template: "Investigate cross-platform regressions and add compatibility tests for assistive technologies."
-      - type: "escalate"
-        when: "severity == 'high'"
-        escalation_level: "engineering_on_call"
-
-  - id: "p-satisfactory-01"
-    title: "Satisfactory"
-    description: "The experience should feel respectful, inclusive, and emotionally safe."
-    severity: "low"
-    categories:
-      - "brand"
-      - "cx"
-      - "inclusion"
-    triggers:
-      - "tone_undermines_trust"
-      - "excluded_language"
-      - "friction_without_support"
-    actions:
-      - type: "suggest_fix"
-        template: "Adjust tone and provide supportive microcopy and guidance."
+- id: p-perceivable-01
+  title: Perceivable
+  description: Users must be able to recognize and access content without exclusion by sensory or format
+    barriers.
+  severity: requires_case_assessment
+  categories:
+  - content
+  - brand
+  - accessibility
+  triggers:
+  - missing_alt_text
+  - missing_captions
+  - content_only_in_visual_format
+  actions:
+  - type: suggest_fix
+    template: Provide accessible alternatives such as text, transcripts, captions, or structured descriptions.
+  - type: escalate
+    when: case_assessment_identifies_harm_or_exclusion
+    escalation_level: human_accessibility_reviewer
+  emotional_lens: Feeling Seen
+  evidence_required:
+  - task_version_and_conditions
+  - functional_observation_or_not_assessed
+  - experience_outcome_or_not_assessed
+  - participant_account_or_not_assessed
+  - missing_evidence_and_retest_plan
+  review_requirements:
+  - confirm_applicable_requirement_separately
+  - confirm_actual_owner_before_any_escalation
+  - do_not_infer_feelings_or_satisfaction_from_technical_checks
+- id: p-operable-01
+  title: Operable
+  description: Users must be able to navigate and act without unexpected barriers.
+  severity: requires_case_assessment
+  categories:
+  - interaction
+  - navigation
+  - experience
+  triggers:
+  - keyboard_inaccessible_controls
+  - focus_trap
+  - unlabeled_action
+  actions:
+  - type: suggest_fix
+    template: Ensure controls are keyboard usable, clearly labeled, and navigable without hidden traps.
+  emotional_lens: Feeling Capable
+  evidence_required:
+  - task_version_and_conditions
+  - functional_observation_or_not_assessed
+  - experience_outcome_or_not_assessed
+  - participant_account_or_not_assessed
+  - missing_evidence_and_retest_plan
+  review_requirements:
+  - confirm_applicable_requirement_separately
+  - confirm_actual_owner_before_any_escalation
+  - do_not_infer_feelings_or_satisfaction_from_technical_checks
+- id: p-understandable-01
+  title: Understandable
+  description: People should understand the context, actions, and decisions in the experience.
+  severity: requires_case_assessment
+  categories:
+  - copy
+  - interface
+  - decision_support
+  triggers:
+  - ambiguous_state
+  - unclear_error
+  - misleading_label
+  actions:
+  - type: suggest_fix
+    template: Clarify labels, provide contextual help, and avoid ambiguous phrasing.
+  emotional_lens: Feeling Confident
+  evidence_required:
+  - task_version_and_conditions
+  - functional_observation_or_not_assessed
+  - experience_outcome_or_not_assessed
+  - participant_account_or_not_assessed
+  - missing_evidence_and_retest_plan
+  review_requirements:
+  - confirm_applicable_requirement_separately
+  - confirm_actual_owner_before_any_escalation
+  - do_not_infer_feelings_or_satisfaction_from_technical_checks
+- id: p-robust-01
+  title: Robust
+  description: Systems should remain reliable across devices, assistive technologies, and changing conditions.
+  severity: requires_case_assessment
+  categories:
+  - technical
+  - resilience
+  - trust
+  triggers:
+  - technical_regression
+  - incompatible_assistive_technology
+  - inconsistent_behavior_across_contexts
+  actions:
+  - type: suggest_fix
+    template: Investigate cross-platform regressions and add compatibility tests for assistive technologies.
+  - type: escalate
+    when: case_assessment_identifies_harm_or_exclusion
+    escalation_level: engineering_on_call
+  emotional_lens: Feeling Safe
+  evidence_required:
+  - task_version_and_conditions
+  - functional_observation_or_not_assessed
+  - experience_outcome_or_not_assessed
+  - participant_account_or_not_assessed
+  - missing_evidence_and_retest_plan
+  review_requirements:
+  - confirm_applicable_requirement_separately
+  - confirm_actual_owner_before_any_escalation
+  - do_not_infer_feelings_or_satisfaction_from_technical_checks
+- id: p-satisfactory-01
+  title: Satisfactory
+  description: Investigate whether the intended outcome meets needs and reasonable expectations with acceptable
+    effort, choice, recovery and dignity; do not treat satisfaction as legal conformity.
+  severity: requires_case_assessment
+  categories:
+  - brand
+  - cx
+  - inclusion
+  - task_outcomes
+  - cognitive_ux
+  - recovery
+  triggers:
+  - tone_undermines_trust
+  - excluded_language
+  - friction_without_support
+  - incorrect_or_blocked_completion
+  - avoidable_time_or_effort
+  - lost_task_context
+  - forced_assistance
+  - preferences_not_respected
+  - unresolved_recovery
+  - dissatisfaction_reported
+  actions:
+  - type: suggest_fix
+    template: Investigate the task, route, effort, time, choice and recovery with affected people; correct
+      the underlying cause, retain separate technical and experience evidence, and retest.
+  - type: propose_human_review
+    when: case_assessment_identifies_harm_or_exclusion
+    escalation_level: responsible_service_owner_to_be_confirmed
+  emotional_lens: Feeling Valued
+  evidence_required:
+  - task_version_and_conditions
+  - functional_observation_or_not_assessed
+  - experience_outcome_or_not_assessed
+  - participant_account_or_not_assessed
+  - missing_evidence_and_retest_plan
+  review_requirements:
+  - confirm_applicable_requirement_separately
+  - confirm_actual_owner_before_any_escalation
+  - do_not_infer_feelings_or_satisfaction_from_technical_checks
+  experience_categories:
+  - SX01
+  - SX02
+  - SX03
+  - SX04
+  - SX05
+  - SX06
+  - SX07
+  - SX08
+  - SX09

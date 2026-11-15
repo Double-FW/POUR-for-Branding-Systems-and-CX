@@ -1,87 +1,47 @@
-# POUR for Branding Systems and CX
+---
+title: "POURS for branding systems and customer experience"
+version: "2.0.0"
+status: draft_for_review
+license: MIT
+language: en-GB
+---
 
-The emotional accessibility framework for brand systems, customer experience, and inclusive design.
+# POURS for branding systems and customer experience
 
-POUR is a practical lens for designing experiences that are more inclusive, understandable, and emotionally resonant. This repository reframes the WCAG accessibility principles through the language of brand trust, customer confidence, and human dignity.
+POURS connects the functional foundations of accessibility with the quality of an experience and the promise a brand makes. It retains **Feeling Seen, Feeling Capable, Feeling Confident, Feeling Safe and Feeling Valued** and proposes **Satisfactory** as an additional Double FW experience principle.
 
-## Why this repository exists
+WCAG continues to have four POUR principles. Accessibility and usability overlap; technical conformance alone cannot demonstrate customer satisfaction, brand alignment or particular feelings. This repository provides draft guidance for human review, not measured customer evidence, a compliance engine or an adopted organisational policy.
 
-Accessible brands are not only compliant or visually consistent. They are emotionally intelligent, cognitively clear, and usable across contexts. This project explores how brand systems, messaging, and customer journeys can better reflect the realities of diverse audiences.
+## Read in this order
 
-The goal is to help teams create experiences that:
+| Document | Purpose |
+| --- | --- |
+| [1. Access, experience and brand promise](POURS_Access_Experience_and_Brand_Promise.md) | The framework and the five emotional passages, retained verbatim |
+| [2. Satisfactory customer experience outcomes](Satisfactory_Customer_Experience_Outcomes.md) | Navigation, completion, time/effort, choice, content, engagement, recovery and dignity; Cognitive UX connections |
+| [3. Brand values and inclusive experience research](Brand_Values_and_Inclusive_Experience_Research.md) | Turn actual brand values into testable commitments and accessible research |
+| [4. POURS and EAA Annex I](POURS_and_EAA_Annex_I_Mapping.md) | Selective functional/emotional mapping with explicit legal boundaries |
+| [5. Complaints, recovery and improvement](Complaints_Recovery_and_Continuous_Improvement.md) | Investigate dissatisfaction and barriers, repair, retest and learn |
 
-- feel welcoming and emotionally safe
-- reduce friction for diverse audiences
-- communicate clearly across channels and contexts
-- support trust, confidence, and belonging
-- remain resilient as products, platforms, and people evolve
+The [original essay](The%20WCAG%20POUR%20principles%20reframed%20through%20emotional%20outcomes%20for%20branding%20systems.md) remains unchanged as historical context. The five guides above are the current interpretation. [AGENTS.md](AGENTS.md) provides contributor/agent guidance; [policies.yaml](policies.yaml) contains draft proposals parsed as data, never executed.
 
-## The POUR lens
+## Evidence boundaries
 
-### Perceivable
-Design experiences that people can recognize, access, and interpret regardless of sensory or contextual barriers.
+Keep functional access, satisfactory outcomes and reported emotional/brand experience separate. No complaints is not evidence of satisfaction. A satisfaction rating cannot override an unmet accessibility requirement. EAA complaints governance does not create a general satisfaction conformity test.
 
-- clear visual hierarchy and contrast
-- accessible content and media
-- inclusive representation in tone, imagery, and language
+The guides link to public Double FW resources on Cognitive UX, EAA implementation, Synchronistic Design, programme runbooks and data ethics. They do not import or relicense those resources. No real participant, customer or complaint records are supplied. Publish methods and reviewed learning, not identifiable raw records.
 
-### Operable
-Create experiences that are usable without unnecessary effort, confusion, or exclusion.
+## Hugging Face dataset and weekly updates
 
-- intuitive navigation and decision paths
-- accessible interactions across devices and assistive technologies
-- friction-aware journeys and inclusive service design
+Destination: [GarethFW/POUR_for_Branding_Systems_and_CX](https://huggingface.co/datasets/GarethFW/POUR_for_Branding_Systems_and_CX).
 
-### Understandable
-Build experiences that are cognitively clear, predictable, and emotionally coherent.
+GitHub is the authoring source. The existing workflow supports manual runs and Mondays at 07:23 UTC, subject to GitHub scheduling and inactivity rules. A change must reach the default branch before it can be published. Adding these documents does not require a new dataset, token or secret if the existing setup remains valid.
 
-- plain language and consistent messaging
-- transparent choices and reduced ambiguity
-- reliable brand behavior across customer journeys
+Version 2.0.0 expands the approved export list to all five guides. `documents` contains complete approved sources. `knowledge_chunks` contains exact sections of current Markdown guidance; the original essay and YAML are complete-document only to avoid duplicating the historical emotional text in the chunk view or fragmenting policy proposals. The two views overlap and must not be treated as independent examples when combined. No Q&A or participant results are generated.
 
-### Robust
-Design systems that continue to work across evolving technologies, audiences, and contexts.
+The managed destination files are README.md, LICENSE, documents.jsonl, knowledge_chunks.jsonl, provenance.json, record_schema.json and validation_report.json. Unmanaged raw files remain and may be outdated. Provenance and validation reports describe a particular source snapshot and extraction checks, not legal, participant or brand validation. See [setup and verification](huggingface/SETUP.md).
 
-- scalable design systems
-- resilient content frameworks
-- compatibility with emerging tools and access needs
+## Review, contribution and licence
 
-## Repository focus
+The five guides and policy changes are draft proposals for review. They require local owners, scope, research and adoption decisions before operational use. Changes to the export list require explicit review; missing approved sources, changed licence or invalid policy data block publication.
 
-This repository is intended to capture and evolve ideas, frameworks, and resources related to:
-
-- accessible branding strategy
-- customer experience design
-- inclusive communication principles
-- design system governance
-- accessibility practices for brand and CX teams
-
-## What is included
-
-This project brings together the central idea that accessibility is not separate from brand performance—it is part of it. The repository explores how WCAG principles can be reframed as emotional outcomes for customer trust and brand integrity.
-
-## Getting started
-
-Use this repository as a reference for embedding accessibility into brand strategy and customer experience design.
-
-1. Review the POUR principles and their emotional framing.
-2. Apply the lens to the touchpoints that shape customer perception.
-3. Document examples, gaps, and opportunities in your design work.
-4. Iterate with accessibility, inclusion, and trust in mind.
-
-## Contributing
-
-Contributions are welcome as this project grows. You can help by:
-
-- proposing new principles or examples
-- documenting accessible brand patterns
-- refining the framework for real-world use cases
-- improving editorial and instructional content
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## Status
-
-This repository is a foundational concept and documentation space for applying POUR principles to branding and customer experience work, with a focus on emotional accessibility and brand trust.
+Double FW’s original material is under the [MIT licence](LICENSE). Retain its copyright and permission notice when distributing copies or substantial portions. Linked external sources keep their own terms. [CHANGELOG.md](CHANGELOG.md) records this update.

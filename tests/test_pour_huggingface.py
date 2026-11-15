@@ -43,7 +43,7 @@ class POURSyncTests(unittest.TestCase):
         for row in self.rows('documents.jsonl'):
             self.assertEqual(row['text'].encode(), self.git('show', 'HEAD:' + row['source_path']))
             joined = ''.join(x['text'] for x in self.rows('knowledge_chunks.jsonl') if x['source_path'] == row['source_path'])
-            self.assertEqual(joined, '' if row['source_path']==exporter.POLICY else row['text'])
+            self.assertEqual(joined, '' if row['source_path'] in common.load_config(self.repo).get('document_only_files', [exporter.POLICY]) else row['text'])
 
     def test_metadata_licence_warnings_and_status_remain_visible(self):
         report = self.build()
@@ -95,6 +95,47 @@ class POURSyncTests(unittest.TestCase):
         self.assertIn('Satisfactory',row['text'])
         self.assertIn('not WCAG amendments',row['interpretation_notice'])
         self.assertIn(exporter.ARTICLE,row['required_context_paths'])
+
+    def test_canonical_emotional_passages_match_unchanged_legacy(self):
+        import re
+        pattern = r'\*\*Feeling (?:Seen|Capable|Confident|Safe|Valued).*?\n- Functional: [^\n]+\n- Emotional: [^\n]+'
+        original = re.findall(pattern, self.git('show', 'HEAD:' + exporter.LEGACY_ARTICLE).decode())
+        current = re.findall(pattern, self.git('show', 'HEAD:' + exporter.ARTICLE).decode())
+        self.assertEqual(len(original), 5)
+        self.assertEqual(current, original)
+
+    def test_all_five_guides_export_with_draft_status_and_context(self):
+        self.build()
+        docs = self.rows('documents.jsonl'); chunks = self.rows('knowledge_chunks.jsonl')
+        for path in exporter.GUIDES:
+            row = next(x for x in docs if x['source_path'] == path)
+            self.assertEqual(row['source_status'], 'draft_for_review')
+            self.assertTrue(any(x['source_path'] == path for x in chunks))
+            self.assertTrue(set(exporter.GUIDES) <= set(row['required_context_paths']))
+        self.assertFalse(any(x['source_path'] == exporter.LEGACY_ARTICLE for x in chunks))
+
+    def test_unapproved_document_only_path_rejects(self):
+        p = self.repo/'huggingface/export-config.json'
+        cfg = json.loads(p.read_text()); cfg['document_only_files'].append('private.md')
+        p.write_text(json.dumps(cfg))
+        with self.assertRaises(ValueError): self.build()
+
+    def test_missing_each_new_guide_blocks_publication(self):
+        for path in exporter.GUIDES:
+            with self.subTest(path=path):
+                saved = (self.repo/path).read_bytes()
+                (self.repo/path).unlink(); self.commit()
+                with self.assertRaises(ValueError): self.build()
+                (self.repo/path).write_bytes(saved); self.commit()
+
+    def test_policy_case_assessment_does_not_downgrade_experience(self):
+        self.build()
+        d = exporter.safe_yaml(self.git('show', 'HEAD:policies.yaml').decode())
+        self.assertEqual(d['status'], 'draft_proposals_not_adopted')
+        self.assertEqual([p['id'] for p in d['policies']], ['p-perceivable-01', 'p-operable-01', 'p-understandable-01', 'p-robust-01', 'p-satisfactory-01'])
+        for p in d['policies']:
+            self.assertEqual(p['severity'], 'requires_case_assessment')
+            self.assertIn('participant_account_or_not_assessed', p['evidence_required'])
 
     def test_duplicate_policy_ids_keys_and_unsafe_yaml_reject(self):
         import yaml

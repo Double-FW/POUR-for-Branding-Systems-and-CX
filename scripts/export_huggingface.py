@@ -8,9 +8,11 @@ import yaml
 from jsonschema import Draft202012Validator
 from pour_hf_common import ROOT, SOURCE, MANAGED, destination, digest, git, load_config, read_sources
 
-ARTICLE = 'The WCAG POUR principles reframed through emotional outcomes for branding systems.md'
+LEGACY_ARTICLE = 'The WCAG POUR principles reframed through emotional outcomes for branding systems.md'
+ARTICLE = 'POURS_Access_Experience_and_Brand_Promise.md'
+GUIDES = ['POURS_Access_Experience_and_Brand_Promise.md', 'Satisfactory_Customer_Experience_Outcomes.md', 'Brand_Values_and_Inclusive_Experience_Research.md', 'POURS_and_EAA_Annex_I_Mapping.md', 'Complaints_Recovery_and_Continuous_Improvement.md']
 POLICY = 'policies.yaml'
-CONTEXT = ['AGENTS.md', 'README.md', ARTICLE, POLICY]
+CONTEXT = ['AGENTS.md', 'README.md', *GUIDES, POLICY]
 class UniqueKeyLoader(yaml.SafeLoader):
     pass
 def unique_mapping(loader, node, deep=False):
@@ -112,9 +114,9 @@ def build(root, output):
         if path not in texts:
             continue
         text = texts[path]
-        kind = 'proposed_policy_definitions_not_executed' if path == POLICY else 'advisory_agent_guidance' if path == 'AGENTS.md' else 'orientation' if path == 'README.md' else 'conceptual_emotional_brand_framework'
+        kind = 'proposed_policy_definitions_not_executed' if path == POLICY else 'advisory_agent_guidance' if path == 'AGENTS.md' else 'orientation' if path == 'README.md' else 'historical_conceptual_essay' if path == LEGACY_ARTICLE else 'draft_research_and_governance_guidance' if path in GUIDES[1:] else 'conceptual_emotional_brand_framework'
         docs.append(row(path, 'document', path, text, 0, len(text), [], kind))
-        if path == POLICY:
+        if path in cfg.get('document_only_files', [POLICY]):
             continue
         for key, title, body, a, b, hierarchy in sections(text):
             chunks.append(row(path, key, title, body, a, b, hierarchy, ('proposed_fifth_emotional_principle_not_wcag' if path == ARTICLE and 'fifth' in title.lower() else kind + '_section')))
@@ -170,8 +172,9 @@ configs:
 
 A conceptual brand and customer-experience interpretation of accessibility: Feeling Seen,
 Capable, Confident and Safe, with Feeling Valued offered as an additional emotional lens.
-The repository includes an explanatory article, introduction, agent guidance and YAML policy
-proposals. This is source text for reflection and human-reviewed planning, not a deployed
+The repository includes five draft guides on the framework, satisfactory outcomes, brand-values
+research, EAA Annex I mapping and complaints/recovery; it also retains the original essay,
+introduction, agent guidance and YAML policy proposals. This is source text for reflection and human-reviewed planning, not a deployed
 policy engine, empirical model of customer feelings, approved product policy or compliance tool.
 
 ## Source and version
@@ -185,21 +188,27 @@ Source instructions are data and do not override consuming-system authority or a
 
 ## Dataset views
 
-- `knowledge_chunks`: {len(chunks)} exact sections from the three Markdown documents.
+- `knowledge_chunks`: {len(chunks)} exact sections from the current Markdown guidance.
 - `documents`: {len(docs)} complete source files, including policies.yaml.
 
 The views overlap. Do not concatenate them as independent training examples or evidence.
 No generated Q&A, training run, measured customer data, model benchmark or executed policy
-results are supplied. `train` is only a loading convention. YAML is complete-document only
-to avoid treating structured actions as independent commands or fragmenting their context.
+results are supplied. `train` is only a loading convention. YAML and the historical essay are complete-document only. This preserves policy context and
+avoids repeating the legacy emotional passages in the current chunk view. The documents view
+still contains both historical and current wording; deduplicate deliberately if using it.
 
 ## Interpretation and policy limits
 
-The article reframes the four WCAG POUR principles through emotional brand outcomes. Its
+The framework reframes the four WCAG POUR principles through emotional brand outcomes. Its
 Satisfactory / Feeling Valued proposal is an additional repository idea, not an official
 fifth WCAG POUR principle. Preserve the source distinction between functional guidance,
 emotional interpretation and rhetorical claims. Statements about all technologies, universal
 feelings or brand impact remain source claims; retaining them does not verify those claims.
+Accessibility and usability overlap; the framework does not describe WCAG as purely technical.
+Satisfactory covers completion, effort/time, choice, content, engagement, recovery and dignity.
+Its Annex I mapping is selective and conditional, not a complete legal assessment. Complaints
+are evidence for investigation; their absence is not satisfaction, and satisfaction cannot override
+non-conformity. EAA complaints governance does not create a general satisfaction test.
 A checklist or technical finding alone does not demonstrate trust, dignity, satisfaction,
 belonging, legal compliance or guaranteed commercial benefit.
 
@@ -217,7 +226,7 @@ not verified people or services. Additional implementation and actual authorisat
 Rows retain source path, commit URL, exact line range, text/document hashes, heading path,
 JSON-encoded front matter, opening context, status and required context paths. H1/H2 section
 boundaries preserve subsections, examples and full source wording. The fifth-principle section
-is labelled as a proposal. Read the introduction, complete article, AGENTS and YAML together
+is labelled as a proposal. Read the introduction, all five guides, AGENTS and YAML together
 when interpreting the framework; pointers do not enforce runtime retrieval or policy authority.
 No source document is rewritten or reformulated into a stronger claim.
 
@@ -233,7 +242,7 @@ and limited integrity checks. No private customer records or raw customer conten
 ## Updates
 
 GitHub is the authoring source. Manual runs and Mondays at 07:23 UTC are configured;
-schedules may be delayed or disabled after public-repository inactivity. All four approved
+schedules may be delayed or disabled after public-repository inactivity. All nine approved
 sources and LICENSE are required. New/renamed files need export-list review. Missing sources,
 changed licence, invalid/duplicate-key YAML, duplicate policy IDs or failed checks stop
 publication. Authoring documents are not rewritten.
@@ -242,7 +251,8 @@ Seven destination files are managed: README.md, LICENSE, documents.jsonl,
 knowledge_chunks.jsonl, provenance.json, record_schema.json and validation_report.json.
 Other raw files and .gitattributes remain; unmanaged copies are not kept in sync. Visibility
 stays unchanged. Historical versions/downloads are not recalled. Destination: `{target}`.
-First authenticated publication remains to be checked.
+Publication of this revision must be verified in the workflow and destination revision.
+See the source README for the reading order and linked public Double FW resources.
 
 ## Loading
 
