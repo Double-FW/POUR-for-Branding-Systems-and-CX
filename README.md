@@ -45,3 +45,11 @@ The managed destination files are README.md, LICENSE, documents.jsonl, knowledge
 The five guides and policy changes are draft proposals for review. They require local owners, scope, research and adoption decisions before operational use. Changes to the export list require explicit review; missing approved sources, changed licence or invalid policy data block publication.
 
 Double FW’s original material is under the [MIT licence](LICENSE). Retain its copyright and permission notice when distributing copies or substantial portions. Linked external sources keep their own terms. [CHANGELOG.md](CHANGELOG.md) records this update.
+
+## About the author
+
+Gareth Ford Williams is a senior leader in accessibility and inclusive design and co-founder of Double FW Ltd. His work spans accessibility, UX, technical standards, assistive technology and inclusive media. At the BBC, he led accessibility and UX work and chaired standards governance, translating research and policy into practical guidance.
+
+## About Double FW Ltd
+
+Double FW Ltd is a UK accessibility and inclusive design consultancy. It helps organisations build accessibility into strategy, governance, brands, products, content and services. Its public repositories provide practical guidance for people and AI-assisted workflows.
